@@ -58,12 +58,15 @@ func (q *Queue) Deliver() (err error) {
 
 	if resp.StatusCode != http.StatusAccepted {
 		if resp.StatusCode == 403 {
-			return InvalidDomainKeyError{}
+			return InvalidDomainKeyError{req, resp}
 		}
 		if resp.StatusCode == 422 {
-			return InvalidDomainKeyError{}
+			return InvalidDomainKeyError{req, resp}
 		}
-		return fmt.Errorf("Expected 202 Accepted, received %s", resp.Status)
+		if resp.StatusCode >= 500 && resp.StatusCode < 600 {
+			return ServerError{req, resp}
+		}
+		return DeliveryError{req, resp}
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {

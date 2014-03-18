@@ -50,7 +50,8 @@ func IsDeliveryError(err error) (ok bool) {
 }
 
 type InvalidDomainKeyError struct {
-	DeliveryError
+	Request  *http.Request
+	Response *http.Response
 }
 
 func (e InvalidDomainKeyError) Error() string {
@@ -63,7 +64,8 @@ func IsInvalidDomainKeyError(err error) (ok bool) {
 }
 
 type UnprocessableEntityError struct {
-	DeliveryError
+	Request  *http.Request
+	Response *http.Response
 }
 
 func (e UnprocessableEntityError) Error() string {
@@ -76,7 +78,8 @@ func IsUnprocessableEntityError(err error) (ok bool) {
 }
 
 type ServerError struct {
-	DeliveryError
+	Request  *http.Request
+	Response *http.Response
 }
 
 func (e ServerError) Error() string {
