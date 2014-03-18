@@ -12,7 +12,7 @@ import "github.com/apostle/apostle.go/apostle"
 ## Usage
 
 ### Domain Key
-You will need to provide your apostle domain key to send emails. You can either place this value into your OS environment as `APOSTLE_DOMAIN_KEY`, or specify it in your code.
+You will need to provide your apostle domain key to send emails. You can either place this value into your environment as `APOSTLE_DOMAIN_KEY`, or specify it in your code.
 
 ```go
 apostle.SetDomainKey("Your Domain Key")
