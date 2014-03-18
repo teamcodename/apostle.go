@@ -67,19 +67,7 @@ Both `NewMail` and `Queue.Add` return an error to be checked. It will be one of 
 * `NoEmailError`: You supplied an invalid email (an empty string)
 * `NoTemplateError`: You suppled no template id
 
-You can check the type of error like so:
 
-```go
-err := NewMail(someTemplateVar, someEmailVar)
-if err != nil{
-	if apostle.IsNoEmailError(err) {
-		// Email error
-	}
-	if apostle.IsNoTemplateError(err) {
-		// Template error
-	}
-}
-```
 
 #### Delivery Errors
 
@@ -92,11 +80,22 @@ if err != nil{
 * `ServerError`: (HTTP >= 500) – Server error. Something went wrong at the Apostle API, you should try again with exponential backoff.
 * `DeliveryError` – Any response code that is not covered by the above exceptions.
 
-All errors have a relevant checker, e.g. `IsInvalidDomainKeyError`.
-
 All delivery errors, with the exception of `NoDomainKeyError`, have `Request` and `Response` attributes.
 
+#### Error Type Checking
 
+You can check the type of error like so:
+
+```go
+err := NewMail(someTemplateVar, someEmailVar)
+if err != nil{
+	if _, ok = err.(NoEmailError); ok {
+		// Email error
+	}else if _, ok = err.(NoTemplateError); ok {
+		// Template error
+	}
+}
+```
 
 ## Contributors
 
