@@ -11,6 +11,10 @@ import (
 	"os"
 )
 
+var (
+	conf = loadConfig()
+)
+
 func Send(templateId string, email string, name string, data map[string]string) error {
 	// generate json request body
 	m := map[string]interface{}{
