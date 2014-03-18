@@ -32,7 +32,7 @@ You can pass any information that your Apostle.io template might need to the `Da
 ```go
 type Order struct {
 	Id 		int		`json:"id"`
-	Total 	float	`json:"total"`
+	Total 	float64	`json:"total"`
 	Items 	int		`json:"items"`
 	email	string
 }
