@@ -23,7 +23,7 @@ apostle.SetDomainKey("Your Domain Key")
 Sending an email is easy, a minimal example may look like this.
 
 ```go
-mail := apostle.NewMail('welcome_email', 'mal@apostle.io')
+mail := apostle.NewMail("welcome_email", "mal@apostle.io")
 mail.Deliver()
 ```
 
@@ -31,17 +31,17 @@ You can pass any information that your Apostle.io template might need to the `Da
 
 ```go
 type Order struct {
-	Id 		int		\`json:"id"\`
-	Total 	float	\`json:"total"\`
-	Items 	int		\`json:"items"\`
+	Id 		int		`json:"id"`
+	Total 	float	`json:"total"`
+	Items 	int		`json:"items"`
 	email	string
 }
 
 func MailOrder() {
 	o := Order{1234, 12.56, 3, "mal@apostle.io"}
 	
-	m := apostle.Mail('order_email', o.email)
-	m.Data['order'] = o
+	m := apostle.Mail("order_email", o.email)
+	m.Data["order"] = o
 	m.Deliver()
 }
 ```
@@ -52,8 +52,8 @@ You can send multiple emails at once by using a queue.
 ```go
 q := apostle.NewQueue()
 
-q.Add(apostle.NewMail('welcome_email', 'mal@apostle.io'))
-q.Add(apostle.NewMail('user_signed_up', 'admin@apostle.io'))
+q.Add(apostle.NewMail("welcome_email", "mal@apostle.io"))
+q.Add(apostle.NewMail("user_signed_up", "admin@apostle.io"))
 
 q.Deliver()
 ```
