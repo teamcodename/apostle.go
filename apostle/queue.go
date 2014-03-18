@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -68,13 +66,5 @@ func (q *Queue) Deliver() (err error) {
 		}
 		return DeliveryError{req, resp}
 	}
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return
-	}
-
-	defer resp.Body.Close()
-	log.Printf("Apostle returned: %v", string(body))
-
 	return
 }
