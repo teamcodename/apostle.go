@@ -27,7 +27,7 @@ mail := apostle.NewMail("welcome_email", "mal@apostle.io")
 mail.Deliver()
 ```
 
-You can pass any information that your Apostle.io template might need to the `Data` attribute. Since these structs are converted using the stdlib `encoding/json` package, only exportable attributes will be encoded. You can change key names by adding `\`json:"key_name"\`` in the type definition.
+You can pass any information that your Apostle.io template might need to the `Data` attribute. Since these structs are converted using the stdlib `encoding/json` package, only exportable attributes will be encoded. You can change key names by adding `` `json:"key_name"` `` in the type definition.
 
 ```go
 type Order struct {
