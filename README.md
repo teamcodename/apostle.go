@@ -34,7 +34,7 @@ type Order struct {
 	Id 		int		`json:"id"`
 	Total 	float64	`json:"total"`
 	Items 	int		`json:"items"`
-	email	string
+	email	string	// Will not be sent to Apostle
 }
 
 func MailOrder() {
